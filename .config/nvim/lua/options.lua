@@ -1,6 +1,9 @@
 vim.opt.number = true
-vim.opt.shiftwidth = 2
-vim.opt.tabstop = 2
+vim.opt.relativenumber = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.textwidth = 100
+vim.opt_local.colorcolumn = "100"
 
 vim.opt.termguicolors = true
 

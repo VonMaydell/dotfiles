@@ -22,6 +22,7 @@ require("lazy").setup({
 			'nvim-tree/nvim-web-devicons',
 		},
 	},
+	'nvim-tree/nvim-tree.lua',
 })
 
 require'lspconfig'.gopls.setup({
@@ -75,8 +76,29 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- Telescope
+local telescope = require('telescope')
+telescope.setup({
+	pickers = {
+		find_files = {
+			hidden = true,
+			find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
+		}
+	}
+})
+
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<C-p>', builtin.find_files, {})
 vim.keymap.set('n', '<C-f>', builtin.live_grep, {})
 vim.keymap.set('n', '<C-b>', builtin.buffers, {})
 vim.keymap.set('n', 'gr', builtin.lsp_references, {})
+vim.api.nvim_create_autocmd("FileType", { pattern = "TelescopeResults", command = [[setlocal nofoldenable]] })
+
+-- nvim-tree
+require("nvim-tree").setup({
+	actions = {
+		open_file = {
+			quit_on_open = true,
+		}
+	}
+})
+vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>')
