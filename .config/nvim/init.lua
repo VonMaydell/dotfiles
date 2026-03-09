@@ -1,4 +1,7 @@
 require("options")
 require("keymaps")
-require("plugins")
+require("pack")
+require("lsp")
+require("plugins.telescope")
+require("plugins.nvim-tree")
 require("theme")
